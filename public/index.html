@@ -100,6 +100,8 @@
     }
 
     function showImage(result) {
+      console.log(result, "gkgjikfnejkm");
+
       endProcess();
       document.querySelector('#globalGatewayError').innerHTML = "";
       document.querySelector('#capturedFrontImage').src = result.image;
@@ -113,12 +115,14 @@
       }
       if (result.classification) {
         qualityText += `IDClassification: ${JSON.stringify(result.classification)}\n`;
+        qualityText += `classname: ${JSON.stringify(result.classification.ClassName)}\n`;
       }
       if (result.liveness) {
         qualityText += `LivenessResult: ${JSON.stringify(result.liveness.LivenessResult)}\n` +
           `ErrorCode: ${result.liveness.ErrorCode}\n` +
           `ErrorMessage: ${result.liveness.ErrorMessage}`;
       }
+      console.log(result);
       writeText(qualityText);
     }
 
@@ -153,6 +157,7 @@
 
     function startDocumentFrontCapture(shouldCollectGeo, token) {
       // Capture Driver Licence and ID Cards.
+      console.log(token, "akwaba")
       StartAcuantFrontDocumentCapture(getIsAutoDropDown(), shouldCollectGeo, startProcess, showImage, showError, token);
     }
     function startDocumentBackCapture(shouldCollectGeo) {
